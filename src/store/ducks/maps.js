@@ -39,6 +39,8 @@ const INITIAL_STATE = {
 export default function maps(state = INITIAL_STATE, action) {
   switch (action.type) {
     case Types.ADD_REQUEST:
+      console.log('Reducer Types.ADD_REQUEST');
+      console.log(action.payload);
       return state;
 
     case Types.ADD_SUCCESS:
@@ -56,7 +58,7 @@ export default function maps(state = INITIAL_STATE, action) {
  * ACTIONS
  */
 export const Creators = {
-  addUserRequest: repository => ({
+  addUserMap: repository => ({
     type: Types.ADD_REQUEST,
     payload: {
       repository

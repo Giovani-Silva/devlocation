@@ -29,7 +29,7 @@ class Map extends Component {
   handleMapClick(e) {
     const [longitude, latitude] = e.lngLat;
 
-    console.log(e.lngLat);
+    MapActions.addUserMap('GIOVANI');
     console.log(`Latitude: ${latitude} \nLongitude: ${longitude}`);
   }
 
@@ -43,7 +43,13 @@ class Map extends Component {
         key={user.id}
       >
         <img
-          style={{ borderRadius: 100, width: 48, height: 48 }}
+          style={{
+            borderRadius: 100,
+            width: 48,
+            height: 48,
+            'box-shadow': '0px 2px 7px #00000096',
+            padding: 5
+          }}
           src={user.avatar_url}
         />
       </Marker>

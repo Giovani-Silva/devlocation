@@ -1,20 +1,22 @@
 import React from 'react';
 
-import { Container } from './styles';
+import { Container, Fade } from './styles';
 
 const handleAddUser = event => event.preventDefault();
 
 const AddDev = () => (
-  <Container>
-    <form onSubmit={handleAddUser}>
+  <Fade>
+    <Container>
       <h2>Adicionar novo usuário</h2>
-      <input type="text" placeholder="usurname on github" />
-      <div>
-        <button type="button">Cancelar</button>
-        <button type="submit">Salvar</button>
-      </div>
-    </form>
-  </Container>
+      <form onSubmit={handleAddUser}>
+        <input type="text" placeholder="Usuário do GitHub" />
+        <div>
+          <button type="button">Cancelar</button>
+          <button type="submit">Salvar</button>
+        </div>
+      </form>
+    </Container>
+  </Fade>
 );
 
 export default AddDev;

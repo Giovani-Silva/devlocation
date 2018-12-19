@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const Fade = styled.div`
   position: absolute;
   z-index: 100000;
   background: rgba(0, 0, 0, 0.7);
@@ -10,16 +10,23 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+`;
+export const Container = styled.div`
+  padding: 20px;
+  background: white;
+  width: 450px;
+  height: 280px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
   form {
-    padding: 20px;
-    background: white;
-    width: 450px;
-    height: 200px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border-radius: 10px;
+    width: 100%;
 
     input {
       width: 100%;
@@ -45,11 +52,16 @@ export const Container = styled.div`
         font-size: 1.4rem;
         font-weight: 700;
         color: white;
-        background: #9e9e9e;
+        background: #868585;
         cursor: pointer;
+        opacity: 0.8;
+        transition: opacity ease 0.5s;
+        &:hover {
+          opacity: 1;
+        }
 
         &:nth-child(2) {
-          background: #4caf50;
+          background: #15a01a;
         }
       }
     }

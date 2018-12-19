@@ -3,6 +3,7 @@
  */
 const Types = {
   RESIZE_MAP: 'maps/RESIZE_MAP',
+  SET_OPEN_MODAL: 'maps/SET_OPEN_MODAL',
   ADD_REQUEST: 'maps/ADD_REQUEST',
   ADD_SUCCESS: 'maps/ADD_SUCCESS',
   ADD_FAILURE: 'maps/ADD_FAILURE'
@@ -12,6 +13,7 @@ const Types = {
  */
 const INITIAL_STATE = {
   loading: false,
+  adding: false,
   error: null,
   users: [
     {
@@ -33,6 +35,9 @@ const INITIAL_STATE = {
 };
 export default function maps(state = INITIAL_STATE, action) {
   switch (action.type) {
+    case Types.SET_OPEN_MODAL:
+      return { ...state, adding: !state.adding };
+
     case Types.RESIZE_MAP:
       return { ...state, viewport: action.payload.viewport };
 
@@ -69,6 +74,7 @@ export default function maps(state = INITIAL_STATE, action) {
  * ACTIONS
  */
 export const Creators = {
+  setOpenModal: () => ({ type: Types.SET_OPEN_MODAL }),
   resizeMap: viewport => ({
     type: Types.RESIZE_MAP,
     payload: {

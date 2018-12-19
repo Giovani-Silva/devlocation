@@ -17,6 +17,7 @@ const INITIAL_STATE = {
     {
       id: 1,
       name: 'Giovani Silva',
+      username: 'Giovani-Silva',
       avatar_url: 'https://avatars3.githubusercontent.com/u/6223139?v=4',
       longitude: -46.72007220774839,
       latitude: -23.600031238069292
@@ -43,6 +44,9 @@ export default function maps(state = INITIAL_STATE, action) {
           {
             id: Math.random(),
             name: 'Giovani Silva',
+            username: `Giovani-Silva-${Math.random()
+              .toFixed(5)
+              .substr(2)}`,
             avatar_url: 'https://avatars3.githubusercontent.com/u/6223139?v=4',
             longitude: action.payload.lon,
             latitude: action.payload.lat

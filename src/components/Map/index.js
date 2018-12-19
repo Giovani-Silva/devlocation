@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import MapGL, { Marker } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
-import { Creators as MapActions } from '../store/ducks/maps';
+import { Creators as MapActions } from '../../store/ducks/maps';
 
 class Map extends Component {
   componentDidMount() {

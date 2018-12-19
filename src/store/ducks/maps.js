@@ -2,6 +2,7 @@
  * TYPES
  */
 const Types = {
+  RESIZE_MAP: 'maps/RESIZE_MAP',
   ADD_REQUEST: 'maps/ADD_REQUEST',
   ADD_SUCCESS: 'maps/ADD_SUCCESS',
   ADD_FAILURE: 'maps/ADD_FAILURE'
@@ -19,13 +20,6 @@ const INITIAL_STATE = {
       avatar_url: 'https://avatars3.githubusercontent.com/u/6223139?v=4',
       longitude: -46.72007220774839,
       latitude: -23.600031238069292
-    },
-    {
-      id: 2,
-      name: 'Diego Fernandes',
-      avatar_url: 'https://avatars2.githubusercontent.com/u/2254731?v=4',
-      longitude: -46.704901633557576,
-      latitude: -23.598989094582578
     }
   ],
   viewport: {
@@ -38,10 +32,23 @@ const INITIAL_STATE = {
 };
 export default function maps(state = INITIAL_STATE, action) {
   switch (action.type) {
+    case Types.RESIZE_MAP:
+      return { ...state, viewport: action.payload.viewport };
+
     case Types.ADD_REQUEST:
-      console.log('Reducer Types.ADD_REQUEST');
-      console.log(action.payload);
-      return state;
+      return {
+        ...state,
+        users: [
+          ...state.users,
+          {
+            id: Math.random(),
+            name: 'Giovani Silva',
+            avatar_url: 'https://avatars3.githubusercontent.com/u/6223139?v=4',
+            longitude: action.payload.lon,
+            latitude: action.payload.lat
+          }
+        ]
+      };
 
     case Types.ADD_SUCCESS:
       return state;
@@ -58,10 +65,14 @@ export default function maps(state = INITIAL_STATE, action) {
  * ACTIONS
  */
 export const Creators = {
-  addUserMap: repository => ({
-    type: Types.ADD_REQUEST,
+  resizeMap: viewport => ({
+    type: Types.RESIZE_MAP,
     payload: {
-      repository
+      viewport
     }
+  }),
+  addUserMap: (lon, lat) => ({
+    type: Types.ADD_REQUEST,
+    payload: { lon, lat }
   })
 };

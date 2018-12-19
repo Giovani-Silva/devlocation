@@ -17,21 +17,18 @@ class Map extends Component {
   }
 
   _resize = () => {
-    this.setState({
-      viewport: {
-        ...this.props.state.maps.viewport,
-        width: window.innerWidth,
-        height: window.innerHeight
-      }
+    this.props.resizeMap({
+      ...this.props.state.maps.viewport,
+      width: window.innerWidth,
+      height: window.innerHeight
     });
   };
 
-  handleMapClick(e) {
+  handleMapClick = e => {
     const [longitude, latitude] = e.lngLat;
-
-    MapActions.addUserMap('GIOVANI');
+    this.props.addUserMap(longitude, latitude);
     console.log(`Latitude: ${latitude} \nLongitude: ${longitude}`);
-  }
+  };
 
   renderMap = () =>
     this.props.state.maps.users.map(user => (
@@ -47,7 +44,7 @@ class Map extends Component {
             borderRadius: 100,
             width: 48,
             height: 48,
-            'box-shadow': '0px 2px 7px #00000096',
+            boxShadow: '0px 2px 7px #00000096',
             padding: 5
           }}
           src={user.avatar_url}
@@ -64,11 +61,7 @@ class Map extends Component {
         mapboxApiAccessToken={
           'pk.eyJ1IjoiZGllZ28zZyIsImEiOiJjamh0aHc4em0wZHdvM2tyc3hqbzNvanhrIn0.3HWnXHy_RCi35opzKo8sHQ'
         }
-        onViewportChange={viewport =>
-          this.setState({
-            viewport
-          })
-        }
+        onViewportChange={viewport => this.props.resizeMap({ ...viewport })}
       >
         {this.renderMap()}
       </MapGL>
@@ -76,7 +69,9 @@ class Map extends Component {
   }
 }
 
-const mapStateToProps = state => ({ state });
+const mapStateToProps = state => ({
+  state
+});
 const mapDispatchToProps = dispatch => bindActionCreators(MapActions, dispatch);
 export default connect(
   mapStateToProps,

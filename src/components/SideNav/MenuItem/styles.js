@@ -16,7 +16,7 @@ export const Container = styled.div`
   }
   div {
     /* flex: 1; */
-    width: 150px;
+    width: 200px;
     display: flex;
     padding: 0 5px;
     flex-direction: column;
@@ -30,8 +30,8 @@ export const Container = styled.div`
   a {
     color: transparent;
     i.fa {
-      width: 40px;
-      height: 40px;
+      width: 30px;
+      height: 30px;
       display: flex;
       justify-content: center;
       align-items: center;

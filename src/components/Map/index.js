@@ -51,7 +51,7 @@ class Map extends Component {
 
   handleMapClick = e => {
     const [longitude, latitude] = e.lngLat;
-    // this.props.addUserMap(longitude, latitude);
+    this.props.addUserLocation(longitude, latitude);
     this.props.setOpenModal();
     console.log(`Latitude: ${latitude} \nLongitude: ${longitude}`);
   };

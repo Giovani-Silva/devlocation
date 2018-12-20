@@ -30,11 +30,24 @@ class AddDev extends Component {
         zoom: PropTypes.number.isRequired,
         latitude: PropTypes.number.isRequired,
         longitude: PropTypes.number.isRequired
+      }).isRequired,
+      location: PropTypes.shape({
+        latitude: PropTypes.number.isRequired,
+        longitude: PropTypes.number.isRequired
       }).isRequired
     })
   };
 
-  handleAddUser = event => event.preventDefault();
+  handleAddUser = e => {
+    e.preventDefault();
+    this.props.addUserRequest(
+      this.state.InputUsername,
+      this.props.state.location.longitude,
+      this.props.state.location.latitude
+    );
+    this.setState({ InputUsername: '' });
+    this.props.setOpenModal();
+  };
 
   handleCancelClick = () => {
     this.props.setOpenModal();
@@ -68,7 +81,7 @@ class AddDev extends Component {
   }
 }
 const mapStateToProps = state => ({
-  state
+  state: state.maps
 });
 const mapDispatchToProps = dispatch => bindActionCreators(MapActions, dispatch);
 export default connect(

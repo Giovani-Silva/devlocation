@@ -1,7 +1,7 @@
 /**
  * TYPES
  */
-const Types = {
+export const Types = {
   RESIZE_MAP: 'maps/RESIZE_MAP',
   SET_OPEN_MODAL: 'maps/SET_OPEN_MODAL',
   ADD_REQUEST: 'maps/ADD_REQUEST',

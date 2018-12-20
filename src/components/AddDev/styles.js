@@ -3,6 +3,8 @@ import styled from 'styled-components';
 export const Fade = styled.div`
   position: absolute;
   z-index: 100000;
+  top: 0;
+  left: 0;
   background: rgba(0, 0, 0, 0.7);
   width: 100%;
   height: 100%;
@@ -10,6 +12,7 @@ export const Fade = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  transition: all ease 0.5 s;
 `;
 export const Container = styled.div`
   padding: 20px;

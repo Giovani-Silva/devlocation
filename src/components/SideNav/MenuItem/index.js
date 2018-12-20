@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Container } from './styles';
 
 const Item = ({ user }) => (
@@ -17,4 +18,14 @@ const Item = ({ user }) => (
   </Container>
 );
 
+Item.propTypes = {
+  user: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    avatar_url: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    username: PropTypes.string.isRequired,
+    latitude: PropTypes.number.isRequired,
+    longitude: PropTypes.number.isRequired
+  }).isRequired
+};
 export default Item;

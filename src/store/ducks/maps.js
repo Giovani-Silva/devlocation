@@ -7,7 +7,9 @@ export const Types = {
   ADD_LOCATION: 'maps/ADD_LOCATION',
   ADD_REQUEST: 'maps/ADD_REQUEST',
   ADD_SUCCESS: 'maps/ADD_SUCCESS',
-  ADD_FAILURE: 'maps/ADD_FAILURE'
+  ADD_FAILURE: 'maps/ADD_FAILURE',
+  ADD_REMOVE: 'maps/ADD_REMOVE',
+  ADD_REMOVED: 'maps/ADD_REMOVED'
 };
 /**
  * REDUCER
@@ -62,6 +64,16 @@ export default function maps(state = INITIAL_STATE, action) {
         error: action.payload.error
       };
 
+    case Types.ADD_REMOVE:
+      return {
+        user: action.payload.user
+      };
+
+    case Types.ADD_REMOVED:
+      return {
+        ...state
+      };
+
     default:
       return state;
   }
@@ -86,9 +98,17 @@ export const Creators = {
     type: Types.ADD_SUCCESS,
     payload: { user }
   }),
-  addFUserFailure: error => ({
+  addUserFailure: error => ({
     type: Types.ADD_FAILURE,
     payload: { error }
+  }),
+  removeUserRequest: user => ({
+    type: Types.ADD_REMOVE,
+    payload: { user }
+  }),
+  removeUserSuccess: user => ({
+    type: Types.ADD_REMOVED,
+    payload: { user }
   }),
   addUserLocation: (lon, lat) => ({
     type: Types.ADD_LOCATION,

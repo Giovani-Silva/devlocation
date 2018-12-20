@@ -12,11 +12,11 @@ export function* addUserRequest(action) {
 
     if (isDuplicate) {
       console.tron.log('isDuplicate', isDuplicate);
-      yield put(MapActions.addFUserFailure('Usuário duplicado'));
+      yield put(MapActions.addUserFailure('Usuário duplicado'));
     } else {
       const userData = {
         id: data.id,
-        name: data.name,
+        name: data.name || data.login,
         username: data.login,
         avatar_url: data.avatar_url,
         longitude: action.payload.lon,
@@ -27,5 +27,13 @@ export function* addUserRequest(action) {
     }
   } catch (err) {
     yield put(MapActions.addUserFailure('Erro ao adicionar repositório'));
+  }
+}
+
+export function* removeUserRequest(action) {
+  try {
+    console.log(action.payload.user);
+  } catch (err) {
+    console.log('não foi possível remover');
   }
 }

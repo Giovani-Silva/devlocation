@@ -16,16 +16,7 @@ const INITIAL_STATE = {
   loading: false,
   adding: false,
   error: null,
-  users: [
-    {
-      id: 1,
-      name: 'Giovani Silva',
-      username: 'Giovani-Silva',
-      avatar_url: 'https://avatars3.githubusercontent.com/u/6223139?v=4',
-      longitude: -46.72007220774839,
-      latitude: -23.600031238069292
-    }
-  ],
+  users: [],
   viewport: {
     width: window.innerWidth,
     height: window.innerHeight,
@@ -50,17 +41,26 @@ export default function maps(state = INITIAL_STATE, action) {
       return { ...state, location: action.payload };
 
     case Types.ADD_REQUEST:
-      return { ...state, loading: true };
+      return {
+        ...state,
+        loading: true,
+        error: null
+      };
 
     case Types.ADD_SUCCESS:
       return {
-        loading: false,
         ...state,
+        loading: false,
+        error: null,
         users: [...state.users, action.payload.user]
       };
 
     case Types.ADD_FAILURE:
-      return state;
+      return {
+        ...state,
+        loading: false,
+        error: action.payload.error
+      };
 
     default:
       return state;
@@ -85,6 +85,10 @@ export const Creators = {
   addUserSuccess: user => ({
     type: Types.ADD_SUCCESS,
     payload: { user }
+  }),
+  addFUserFailure: error => ({
+    type: Types.ADD_FAILURE,
+    payload: { error }
   }),
   addUserLocation: (lon, lat) => ({
     type: Types.ADD_LOCATION,

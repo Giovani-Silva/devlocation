@@ -4,8 +4,18 @@ import PropTypes from 'prop-types';
 import { Container } from './styles';
 import Item from './MenuItem';
 
-const renderItems = ({ users }) =>
-  users.map(user => <Item key={user.id} user={user} />);
+const renderItems = ({ users }) => {
+  console.log();
+  if (!users.length) {
+    return (
+      <div className="no-users">
+        <strong> :( Nenhum usuário cadastrado</strong>
+        <small>Clique no mapa para adicionar um novo usuário</small>
+      </div>
+    );
+  }
+  return users.map(user => <Item key={user.id} user={user} />);
+};
 
 const SideNav = props => <Container> {renderItems(props)} </Container>;
 

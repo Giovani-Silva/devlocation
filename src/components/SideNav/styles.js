@@ -3,6 +3,8 @@ import styled from 'styled-components';
 export const Container = styled.div`
   width: 380px;
   height: calc(100% - 40px);
+  display: flex;
+  flex-direction: column;
   position: absolute;
   top: 50%;
   left: 20px;
@@ -26,5 +28,15 @@ export const Container = styled.div`
   ::-webkit-scrollbar-thumb {
     border-radius: 15px;
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+  }
+
+  .no-users {
+    width: 75%;
+    height: 50px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #797676;
   }
 `;

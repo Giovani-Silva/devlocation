@@ -29,6 +29,7 @@ export const Container = styled.div`
   }
   a {
     color: transparent;
+    cursor: pointer;
     i.fa {
       width: 30px;
       height: 30px;

@@ -29,11 +29,3 @@ export function* addUserRequest(action) {
     yield put(MapActions.addUserFailure('Erro ao adicionar repositório'));
   }
 }
-
-export function* removeUserRequest(action) {
-  try {
-    console.log(action.payload.user);
-  } catch (err) {
-    console.log('não foi possível remover');
-  }
-}

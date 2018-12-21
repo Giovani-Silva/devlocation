@@ -22,8 +22,8 @@ const INITIAL_STATE = {
   viewport: {
     width: window.innerWidth,
     height: window.innerHeight,
-    longitude: -46.72007220774839,
-    latitude: -23.600031238069292,
+    longitude: -46.55257005669249,
+    latitude: -23.70423810819026,
     zoom: 14
   },
   location: {
@@ -65,8 +65,10 @@ export default function maps(state = INITIAL_STATE, action) {
       };
 
     case Types.ADD_REMOVE:
+      const filtered = state.users.filter(user => user !== action.payload.user);
       return {
-        user: action.payload.user
+        ...state,
+        users: filtered
       };
 
     case Types.ADD_REMOVED:

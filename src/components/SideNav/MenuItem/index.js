@@ -7,23 +7,27 @@ import { Creators as MapActions } from '../../../store/ducks/maps';
 import { Container } from './styles';
 
 const handleRemoveUser = (user, props) => {
-  MapActions.removeUserRequest(user);
+  props.removeUserRequest(user);
+  // console.log('handleRemoveUser', MapActions.removeUserRequest(user));
 };
-const Item = ({ user }) => (
-  <Container>
-    <img src={user.avatar_url} alt="user avatar" />
-    <div>
-      <strong>{user.name}</strong>
-      <small>{user.username}</small>
-    </div>
-    <a href="#" onClick={() => handleRemoveUser(user)}>
-      <i className="fa fa-trash" />
-    </a>
-    <a href="#">
-      <i className="fa fa-chevron-right" />
-    </a>
-  </Container>
-);
+const Item = props => {
+  const { user } = props;
+  return (
+    <Container>
+      <img src={user.avatar_url} alt="user avatar" />
+      <div>
+        <strong>{user.name}</strong>
+        <small>{user.username}</small>
+      </div>
+      <a onClick={e => handleRemoveUser(user, props)}>
+        <i className="fa fa-trash" />
+      </a>
+      <a>
+        <i className="fa fa-chevron-right" />
+      </a>
+    </Container>
+  );
+};
 
 Item.defaultProps = {
   user: PropTypes.shape({
@@ -42,4 +46,7 @@ Item.propTypes = {
 };
 
 const mapDispatchToProps = dispatch => bindActionCreators(MapActions, dispatch);
-export default connect(mapDispatchToProps)(Item);
+export default connect(
+  null,
+  mapDispatchToProps
+)(Item);

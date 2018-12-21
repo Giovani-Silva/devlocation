@@ -6,10 +6,10 @@ export const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 139px;
-  max-height: 160px;
+  height: 120px;
   background: rgba(255, 255, 255, 0.65);
   border-bottom: 1px solid #ededed;
+  flex: 0 0 auto;
   img {
     height: 56px;
     border-radius: 50%;
@@ -27,9 +27,11 @@ export const Container = styled.div`
       color: #999;
     }
   }
-  a {
-    color: transparent;
+  button {
+    background: transparent;
+    border-radius: 50px;
     cursor: pointer;
+    border: none;
     i.fa {
       width: 30px;
       height: 30px;

@@ -74,6 +74,7 @@ class Map extends Component {
             padding: 5
           }}
           src={user.avatar_url}
+          alt="avatar"
         />
       </Marker>
     ));

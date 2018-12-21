@@ -3,6 +3,7 @@ import { call, put, select } from 'redux-saga/effects';
 import { Creators as MapActions } from '../ducks/maps';
 
 export function* addUserRequest(action) {
+  let msg;
   try {
     const { data } = yield call(api.get, `/users/${action.payload.username}`);
 
@@ -12,7 +13,8 @@ export function* addUserRequest(action) {
 
     if (isDuplicate) {
       console.tron.log('isDuplicate', isDuplicate);
-      yield put(MapActions.addUserFailure('Usuário duplicado'));
+      msg = { success: null, error: 'Usuário duplicado' };
+      yield put(MapActions.addUserFailure(msg));
     } else {
       const userData = {
         id: data.id,
@@ -26,6 +28,7 @@ export function* addUserRequest(action) {
       yield put(MapActions.addUserSuccess(userData));
     }
   } catch (err) {
-    yield put(MapActions.addUserFailure('Erro ao adicionar repositório'));
+    msg = { success: null, error: 'Usuário não encontrado' };
+    yield put(MapActions.addUserFailure(msg));
   }
 }

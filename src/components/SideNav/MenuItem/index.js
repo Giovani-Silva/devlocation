@@ -14,17 +14,17 @@ const Item = props => {
   const { user } = props;
   return (
     <Container>
-      <img src={user.avatar_url} alt="user avatar" />
+      <img src={user.avatar_url} alt="avatar" />
       <div>
         <strong>{user.name}</strong>
         <small>{user.username}</small>
       </div>
-      <a onClick={e => handleRemoveUser(user, props)}>
+      <button type="button" onClick={e => handleRemoveUser(user, props)}>
         <i className="fa fa-trash" />
-      </a>
-      <a>
+      </button>
+      <button type="button">
         <i className="fa fa-chevron-right" />
-      </a>
+      </button>
     </Container>
   );
 };

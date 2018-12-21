@@ -4,6 +4,7 @@
 export const Types = {
   RESIZE_MAP: 'maps/RESIZE_MAP',
   SET_OPEN_MODAL: 'maps/SET_OPEN_MODAL',
+  ADD_CLEAR_MSG: 'maps/ADD_CLEAR_MSG',
   ADD_LOCATION: 'maps/ADD_LOCATION',
   ADD_REQUEST: 'maps/ADD_REQUEST',
   ADD_SUCCESS: 'maps/ADD_SUCCESS',
@@ -17,7 +18,10 @@ export const Types = {
 const INITIAL_STATE = {
   loading: false,
   adding: false,
-  error: null,
+  msg: {
+    success: null,
+    error: null
+  },
   users: [],
   viewport: {
     width: window.innerWidth,
@@ -46,14 +50,14 @@ export default function maps(state = INITIAL_STATE, action) {
       return {
         ...state,
         loading: true,
-        error: null
+        msg: { success: null, error: null }
       };
 
     case Types.ADD_SUCCESS:
       return {
         ...state,
         loading: false,
-        error: null,
+        msg: { success: 'Usuário cadastrado com sucesso', error: null },
         users: [...state.users, action.payload.user]
       };
 
@@ -61,7 +65,7 @@ export default function maps(state = INITIAL_STATE, action) {
       return {
         ...state,
         loading: false,
-        error: action.payload.error
+        msg: action.payload.error
       };
 
     case Types.ADD_REMOVE:
@@ -71,7 +75,7 @@ export default function maps(state = INITIAL_STATE, action) {
         users: filtered
       };
 
-    case Types.ADD_REMOVED:
+    case Types.ADD_CLEAR_MSG:
       return {
         ...state
       };
@@ -86,11 +90,10 @@ export default function maps(state = INITIAL_STATE, action) {
  */
 export const Creators = {
   setOpenModal: () => ({ type: Types.SET_OPEN_MODAL }),
+  clearMessages: () => ({ type: Types.ADD_CLEAR_MSG }),
   resizeMap: viewport => ({
     type: Types.RESIZE_MAP,
-    payload: {
-      viewport
-    }
+    payload: { viewport }
   }),
   addUserRequest: (username, lon, lat) => ({
     type: Types.ADD_REQUEST,

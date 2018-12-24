@@ -10,7 +10,7 @@ export const Types = {
   ADD_SUCCESS: 'maps/ADD_SUCCESS',
   ADD_FAILURE: 'maps/ADD_FAILURE',
   ADD_REMOVE: 'maps/ADD_REMOVE',
-  ADD_REMOVED: 'maps/ADD_REMOVED'
+  LOCATION_USER: 'maps/LOCATION_USER'
 };
 /**
  * REDUCER
@@ -38,13 +38,25 @@ const INITIAL_STATE = {
 export default function maps(state = INITIAL_STATE, action) {
   switch (action.type) {
     case Types.SET_OPEN_MODAL:
-      return { ...state, adding: !state.adding };
+      return {
+        ...state,
+        adding: !state.adding,
+        msg: { success: null, error: null }
+      };
 
     case Types.RESIZE_MAP:
-      return { ...state, viewport: action.payload.viewport };
+      return {
+        ...state,
+        viewport: action.payload.viewport,
+        msg: { success: null, error: null }
+      };
 
     case Types.ADD_LOCATION:
-      return { ...state, location: action.payload };
+      return {
+        ...state,
+        location: action.payload,
+        msg: { success: null, error: null }
+      };
 
     case Types.ADD_REQUEST:
       return {
@@ -72,12 +84,20 @@ export default function maps(state = INITIAL_STATE, action) {
       const filtered = state.users.filter(user => user !== action.payload.user);
       return {
         ...state,
-        users: filtered
+        users: filtered,
+        msg: { success: null, error: null }
       };
 
-    case Types.ADD_CLEAR_MSG:
+    case Types.LOCATION_USER:
+      const locate = {
+        ...state.viewport,
+        latitude: action.payload.user.latitude,
+        longitude: action.payload.user.longitude
+      };
       return {
-        ...state
+        ...state,
+        msg: { success: null, error: null },
+        viewport: locate
       };
 
     default:
@@ -90,7 +110,6 @@ export default function maps(state = INITIAL_STATE, action) {
  */
 export const Creators = {
   setOpenModal: () => ({ type: Types.SET_OPEN_MODAL }),
-  clearMessages: () => ({ type: Types.ADD_CLEAR_MSG }),
   resizeMap: viewport => ({
     type: Types.RESIZE_MAP,
     payload: { viewport }
@@ -107,12 +126,12 @@ export const Creators = {
     type: Types.ADD_FAILURE,
     payload: { error }
   }),
-  removeUserRequest: user => ({
+  removeUser: user => ({
     type: Types.ADD_REMOVE,
     payload: { user }
   }),
-  removeUserSuccess: user => ({
-    type: Types.ADD_REMOVED,
+  locationUser: user => ({
+    type: Types.LOCATION_USER,
     payload: { user }
   }),
   addUserLocation: (lon, lat) => ({

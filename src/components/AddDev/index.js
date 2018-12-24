@@ -59,7 +59,7 @@ class AddDev extends Component {
           <h2>Adicionar novo usuário</h2>
           <form onSubmit={this.handleAddUser}>
             <input
-              autoFocus="true"
+              autoFocus
               type="text"
               placeholder="Usuário do GitHub"
               onChange={e => this.setState({ InputUsername: e.target.value })}

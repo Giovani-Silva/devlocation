@@ -10,8 +10,8 @@ import { Creators as MapActions } from '../../store/ducks/maps';
 class Map extends Component {
   static proptypes = {
     state: PropTypes.shape({
-      adding: PropTypes.bool,
-      loading: PropTypes.bool,
+      adding: PropTypes.bool.isRequired,
+      loading: PropTypes.bool.isRequired,
       users: PropTypes.arrayOf(
         PropTypes.shape({
           id: PropTypes.number.isRequired,
@@ -53,7 +53,6 @@ class Map extends Component {
     const [longitude, latitude] = e.lngLat;
     this.props.addUserLocation(longitude, latitude);
     this.props.setOpenModal();
-    console.log(`Latitude: ${latitude} \nLongitude: ${longitude}`);
   };
 
   renderMap = () =>

@@ -5,7 +5,6 @@ import { Container } from './styles';
 import Item from './MenuItem';
 
 const renderItems = ({ users }) => {
-  console.log();
   if (!users.length) {
     return (
       <div className="no-users">

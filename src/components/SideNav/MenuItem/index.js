@@ -7,8 +7,10 @@ import { Creators as MapActions } from '../../../store/ducks/maps';
 import { Container } from './styles';
 
 const handleRemoveUser = (user, props) => {
-  props.removeUserRequest(user);
-  // console.log('handleRemoveUser', MapActions.removeUserRequest(user));
+  props.removeUser(user);
+};
+const handleLocateUser = (user, props) => {
+  props.locationUser(user);
 };
 const Item = props => {
   const { user } = props;
@@ -22,7 +24,7 @@ const Item = props => {
       <button type="button" onClick={e => handleRemoveUser(user, props)}>
         <i className="fa fa-trash" />
       </button>
-      <button type="button">
+      <button type="button" onClick={e => handleLocateUser(user, props)}>
         <i className="fa fa-chevron-right" />
       </button>
     </Container>
@@ -35,6 +37,8 @@ Item.defaultProps = {
   })
 };
 Item.propTypes = {
+  removeUser: PropTypes.func.isRequired,
+  locationUser: PropTypes.func.isRequired,
   user: PropTypes.shape({
     id: PropTypes.number.isRequired,
     avatar_url: PropTypes.string.isRequired,

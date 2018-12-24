@@ -12,29 +12,23 @@ import { Creators as MapActions } from '../../store/ducks/maps';
 
 const Main = props => {
   const { state } = props;
-
-  if (!!state.msg.error) {
-    props.clearMessages();
-    toast.error(state.msg.error, {
-      position: toast.POSITION.TOP_RIGHT
-    });
-  }
   const renderNotify = () => {
     if (!!state.msg.error) {
       toast.error(state.msg.error, {
         position: toast.POSITION.TOP_RIGHT
       });
-      props.clearMessages();
     }
     if (!!state.msg.success) {
       toast.success(state.msg.success, {
         position: toast.POSITION.TOP_RIGHT
       });
-      props.clearMessages();
     }
   };
   return (
     <Fragment>
+      {/* {state.msg} */}
+      {!!state.msg.success && renderNotify()}
+      {!!state.msg.error && renderNotify()}
       <ToastContainer />
       <Menu />
       <Map />
@@ -43,11 +37,19 @@ const Main = props => {
   );
 };
 Main.defaultProps = {
-  adding: false
+  adding: false,
+  msg: PropTypes.shape({
+    success: null,
+    error: null
+  })
 };
 Main.propTypes = {
   state: PropTypes.shape({
-    adding: PropTypes.bool
+    adding: PropTypes.bool,
+    msg: PropTypes.shape({
+      success: PropTypes.string,
+      error: PropTypes.string
+    })
   }).isRequired
 };
 

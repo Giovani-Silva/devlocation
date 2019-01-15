@@ -23,3 +23,5 @@ A aplicação se trata de um repositório de localização de desenvolvedores. O
 7. Deve ser possível excluir usuários da listagem clicando sobre o “x” na sidebar;
 
 ![devlocation](screenshot.jpg)
+
+> “Se você acha que pode, ou que não pode, das duas formas você está certo”!
